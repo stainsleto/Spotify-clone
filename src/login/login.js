@@ -16,16 +16,35 @@ document.addEventListener("DOMContentLoaded", ()=>{
 
 })
 
+window.setItemsInLocalStorage = ({accessToken, tokenType,expiresIn}) => {
+    localStorage.setItem("accessToken",accessToken);
+    localStorage.setItem("tokenType",tokenType);
+    localStorage.setItem('expiresIn',expiresIn);
+    window.location.href = APP_URL;
+}
+
 window.addEventListener("load", () => {
     const accessToken = localStorage.getItem(ACCESS_TOKEN_KEY);
     if(accessToken){
         window.location.href = `${APP_URL}/dashboard/dashboard.html`;
     }
-    if(!window.opener && !window.opener.closed){
+    if(window.opener !== null  && !window.opener.closed){    //window opener is not there and not closed 
         window.focus();
         if(window.location.href.includes("error")){
             window.close();
         }
-        console.log(window.location.hash)
+        const {hash} = window.location;
+        const searchParams = new URLSearchParams(hash);
+        const accessToken = searchParams.get("#access_token");
+        const tokenType = searchParams.get("token_type");
+        const expiresIn = searchParams.get("expires_in");
+        if(accessToken){
+            window.close();
+            window.opener.setItemsinLocalStorage(accessToken,tokenType,expiresIn);
+
+        }
+        else{
+            window.close();
+        }
     }
 })
