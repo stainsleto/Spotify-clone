@@ -28,19 +28,19 @@ window.addEventListener("load", () => {
     if(accessToken){
         window.location.href = `${APP_URL}/dashboard/dashboard.html`;
     }
-    if(window.opener !== null  && !window.opener.closed){    //window opener is not there and not closed 
+    if(window.opener !== null  && !window.opener.closed){    
         window.focus();
         if(window.location.href.includes("error")){
             window.close();
         }
-        const {hash} = window.location;
+        const { hash } = window.location;
         const searchParams = new URLSearchParams(hash);
         const accessToken = searchParams.get("#access_token");
         const tokenType = searchParams.get("token_type");
         const expiresIn = searchParams.get("expires_in");
         if(accessToken){
             window.close();
-            window.opener.setItemsinLocalStorage(accessToken,tokenType,expiresIn);
+            window.opener.setItemsInLocalStorage( {accessToken,tokenType,expiresIn } );
 
         }
         else{

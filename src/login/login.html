@@ -4,12 +4,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spotify player</title>
+    <title>Spotify</title>
     <link rel="stylesheet" href="../style.css">
     <script type="module" src="login.js"></script>
 </head>
-<body>
-    <h1 class="text-3xl font-bold underline text-red-500"> Welcome to login</h1>
-    <button id="login-to-spotify" class="bg-black text-white">login</button>
+<body class="h-screen bg-green">
+    <main class="w-full h-full flex justify-center items-center">
+        <section class="flex items-center flex-col gap-8">
+            <img src="./Spotify_Logo_RGB_Black.png" class="h-[20vh]" alt="spotify image" srcset="" />
+            <input id="login-to-spotify" type="button" value="Login to Spotify" class="bg-dark text-white w-64 h-12 rounded-md hover:cursor-pointer"/>
+        </section>
+
+    </main>
+    <script type="module" src="login.js"></script>
 </body>
 </html>
